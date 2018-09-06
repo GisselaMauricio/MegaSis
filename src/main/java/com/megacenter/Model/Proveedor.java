@@ -8,19 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="proveedor")
+@Table(name = "proveedor")
 public class Proveedor {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProveedor;
-	
-	@Column(name = "nombre", nullable = true, length =70)
+
+	@Column(name = "nombre", nullable = true, length = 70)
 	private String nombre;
-	
-	@Column(name = "dni", nullable = false, length =8)
+
+	@Column(name = "dni", nullable = false, length = 8)
 	private String dni;
-	
-	@Column(name = "telefono",  length =9)
+
+	@Column(name = "telefono", length = 9)
 	private String telefono;
 
 	public int getIdProveedor() {
@@ -54,6 +54,5 @@ public class Proveedor {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	
-	
+
 }

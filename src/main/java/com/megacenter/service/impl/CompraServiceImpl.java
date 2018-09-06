@@ -27,7 +27,7 @@ public class CompraServiceImpl implements ICompraService{
 
 	@Override
 	public void eliminar(int idCompra) {
-		dao.delete(idCompra);
+		dao.deleteById(idCompra);
 		
 		
 	}
@@ -35,11 +35,11 @@ public class CompraServiceImpl implements ICompraService{
 	@Override
 	public Compra listarId(int idCompra) {
 		// TODO Auto-generated method stub
-		return dao.findOne(idCompra);
+		return dao.getOne(idCompra);
 	}
-
+	
 	@Override
-	public List<Compra> list() {
+	public List<Compra> listar() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}

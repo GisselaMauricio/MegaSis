@@ -1,21 +1,25 @@
 package com.megacenter.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.megacenter.Model.Proveedor;
 import com.megacenter.dao.IProveedorDAO;
 import com.megacenter.service.IProveedorService;
 
-public class ProveedorServiceImpl implements IProveedorService {
+@Service
+public class ProveedorServiceImpl implements IProveedorService  {
 
-	@Autowired
+	@Autowired	
 	private IProveedorDAO dao;
+
 	@Override
-	public Void registrar(Proveedor proveedor) {
+	public void registrar(Proveedor proveedor) {
 		// TODO Auto-generated method stub
-		return dao.save(proveedor);
+		proveedor=dao.save(proveedor);
 	}
 
 	@Override
@@ -26,20 +30,25 @@ public class ProveedorServiceImpl implements IProveedorService {
 
 	@Override
 	public void eliminar(int idProveedor) {
-		// TODO Auto-generated method stub
-		
+		dao.deleteById(idProveedor);
+
 	}
 
 	@Override
 	public Proveedor listarId(int idProveedor) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findById(idProveedor).get();
 	}
 
 	@Override
-	public List<Proveedor> list() {
+	public List<Proveedor> listar() {
 		// TODO Auto-generated method stub
-		return null;
+		return  dao.findAll();
 	}
+
+	
+	
+	
+
 
 }
