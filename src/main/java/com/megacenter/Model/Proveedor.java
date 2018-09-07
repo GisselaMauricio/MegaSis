@@ -11,7 +11,8 @@ import javax.persistence.Table;
 @Table(name = "proveedor")
 public class Proveedor {
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	/*not exists operation on sqlite*/
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idProveedor;
 
 	@Column(name = "nombre", nullable = true, length = 70)
