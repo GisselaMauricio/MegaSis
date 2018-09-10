@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.megacenter.Model.Sucursal;
 import com.megacenter.service.ISucursalService;
 @RestController
-@RequestMapping("/sucursal")
+@RequestMapping("/sucursales")
 public class SucursalController {
 	
 	@Autowired

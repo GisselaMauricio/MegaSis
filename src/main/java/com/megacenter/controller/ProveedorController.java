@@ -34,7 +34,7 @@ public ResponseEntity<List<Proveedor>> listar(){
 	return new ResponseEntity<List<Proveedor>>(proveedores, HttpStatus.OK);
 		
 }
-@GetMapping( value="/listar/{id}" ,produces=MediaType.APPLICATION_JSON_VALUE)
+@GetMapping( value="/{id}" ,produces=MediaType.APPLICATION_JSON_VALUE)
 public ResponseEntity<Proveedor> listarId(@PathVariable("id") Integer id){
 	Proveedor proveedor = new Proveedor();
 	proveedor = service.listarId(id);
@@ -71,4 +71,5 @@ public ResponseEntity<Integer> eliminar(@PathVariable Integer id) {
 		resultado=0;
 	}return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
 }
+
 }

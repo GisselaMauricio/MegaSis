@@ -12,17 +12,25 @@ import javax.persistence.Table;
 public class Proveedor {
 	@Id
 	/*not exists operation on sqlite*/
-	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProveedor;
 
 	@Column(name = "nombre", nullable = true, length = 70)
 	private String nombre;
 
-	@Column(name = "dni", nullable = false, length = 8)
-	private String dni;
+	@Column(name = "ruc", nullable = false, length = 11)
+	private String ruc;
 
 	@Column(name = "telefono", length = 9)
 	private String telefono;
+
+	public String getRuc() {
+		return ruc;
+	}
+
+	public void setRuc(String ruc) {
+		this.ruc = ruc;
+	}
 
 	public int getIdProveedor() {
 		return idProveedor;
@@ -40,14 +48,7 @@ public class Proveedor {
 		this.nombre = nombre;
 	}
 
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-
+	
 	public String getTelefono() {
 		return telefono;
 	}

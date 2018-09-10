@@ -2,6 +2,7 @@ package com.megacenter.Model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,18 +18,53 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 @Table(name="compra")
 public class Compra {
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 private int idCompra;
 
 @ManyToOne
 @JoinColumn(name="id_proveedor", nullable=false)
 private Proveedor proveedor;
 
+@ManyToOne
+@JoinColumn(name="id_sucursal", nullable=false)
+private Sucursal sucursal;
+
 @JsonSerialize(using=ToStringSerializer.class)
 private LocalDateTime fecha;
 
+@Column(name = "MontoTotal", nullable = false, precision= 11,scale =2)
+private Double montoTotal;
+
+@Column(name = "guiaRemision", nullable = false, length = 10)
+private String guiaRemision;
+
+
 public int getIdCompra() {
 	return idCompra;
+}
+
+public Sucursal getSucursal() {
+	return sucursal;
+}
+
+public void setSucursal(Sucursal sucursal) {
+	this.sucursal = sucursal;
+}
+
+public Double getMontoTotal() {
+	return montoTotal;
+}
+
+public void setMontoTotal(Double montoTotal) {
+	this.montoTotal = montoTotal;
+}
+
+public String getGuiaRemision() {
+	return guiaRemision;
+}
+
+public void setGuiaRemision(String guiaRemision) {
+	this.guiaRemision = guiaRemision;
 }
 
 public void setIdCompra(int idCompra) {

@@ -15,7 +15,8 @@ public class CompraServiceImpl implements ICompraService{
 	private ICompraDAO dao;
 	@Override
 	public Compra registrar(Compra compra) {
-		
+		//compra.getDetalleProducto().forEach(x-> x.setCompra(compra));
+		//for(Detallecompra det: compra.getDetalleCompra()){det.setCompra(consulta)}
 		return dao.save(compra);
 	}
 
