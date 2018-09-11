@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.megacenter.Model.Compra;
 import com.megacenter.dao.ICompraDAO;
 import com.megacenter.service.ICompraService;
@@ -13,10 +14,18 @@ public class CompraServiceImpl implements ICompraService{
 
 	@Autowired
 	private ICompraDAO dao;
+	
+	
 	@Override
 	public Compra registrar(Compra compra) {
-		//compra.getDetalleProducto().forEach(x-> x.setCompra(compra));
+		compra.getDetalleCompra().forEach(x-> x.setCompra(compra));
 		//for(Detallecompra det: compra.getDetalleCompra()){det.setCompra(consulta)}
+		//return dao.save(compraDTO);
+		
+		//Compra com=new Compra();
+		//compraDTO.getCompra().forEach(x-> x.setCompra(compraDTO.getCompra()));
+		//com=dao.save(compraDTO.getCompra());		
+		
 		return dao.save(compra);
 	}
 

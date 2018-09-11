@@ -20,7 +20,7 @@ import com.megacenter.service.IOrganizacionService;
 
 
 @RestController
-@RequestMapping("/organizaciones")
+@RequestMapping("/api/organizaciones")
 public class OrganizacionController {
 	@Autowired
 	private IOrganizacionService service;

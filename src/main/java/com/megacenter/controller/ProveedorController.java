@@ -22,7 +22,7 @@ import com.megacenter.Model.Proveedor;
 import com.megacenter.service.IProveedorService;
 
 @RestController
-@RequestMapping("/proveedores")
+@RequestMapping("/api/proveedores")
 public class ProveedorController {
 @Autowired
 private IProveedorService service;

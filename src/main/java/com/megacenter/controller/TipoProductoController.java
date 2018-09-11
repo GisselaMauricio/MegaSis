@@ -20,7 +20,7 @@ import com.megacenter.Model.TipoProducto;
 import com.megacenter.service.ITipoProductoService;
 
 @RestController
-@RequestMapping(value = "/tipoProductos")
+@RequestMapping(value = "/api/tipoProductos")
 public class TipoProductoController {
 
 	@Autowired

@@ -14,13 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.megacenter.Model.Compra;
-
 import com.megacenter.service.ICompraService;
 
 
 
 @RestController
-@RequestMapping("/compras")
+@RequestMapping("/api/compras")
 public class CompraController {
 	@Autowired
 	private ICompraService service;

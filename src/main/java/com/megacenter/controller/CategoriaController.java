@@ -20,7 +20,7 @@ import com.megacenter.Model.Categoria;
 import com.megacenter.service.ICategoriaService;
 
 @RestController
-@RequestMapping(value = "/categorias")
+@RequestMapping(value = "/api/categorias")
 public class CategoriaController {
 
 	@Autowired

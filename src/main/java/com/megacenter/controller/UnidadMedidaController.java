@@ -20,7 +20,7 @@ import com.megacenter.Model.UnidadMedida;
 import com.megacenter.service.IUnidadMedidaService;
 
 @RestController
-@RequestMapping(value = "/unidadMedida")
+@RequestMapping(value = "/api/unidadMedida")
 public class UnidadMedidaController {
 
 	@Autowired

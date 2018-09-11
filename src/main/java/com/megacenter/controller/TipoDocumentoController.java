@@ -20,7 +20,7 @@ import com.megacenter.Model.TipoDocumeto;
 import com.megacenter.service.ITipoDocumentoService;
 
 @RestController
-@RequestMapping(value = "/tipoDocumentos")
+@RequestMapping(value = "/api/tipoDocumentos")
 public class TipoDocumentoController {
 
 	@Autowired

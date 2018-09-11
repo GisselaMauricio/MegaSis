@@ -1,6 +1,8 @@
 package com.megacenter.Model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,82 +11,96 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 @Entity
-@Table(name="compra")
+@Table(name = "compra")
 public class Compra {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private int idCompra;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idCompra;
 
-@ManyToOne
-@JoinColumn(name="id_proveedor", nullable=false)
-private Proveedor proveedor;
+	@ManyToOne
+	@JoinColumn(name = "id_proveedor", nullable = false)
+	private Proveedor proveedor;
 
-@ManyToOne
-@JoinColumn(name="id_sucursal", nullable=false)
-private Sucursal sucursal;
+	@ManyToOne
+	@JoinColumn(name = "id_sucursal", nullable = false)
+	private Sucursal sucursal;
 
-@JsonSerialize(using=ToStringSerializer.class)
-private LocalDateTime fecha;
+	@JsonSerialize(using = ToStringSerializer.class)
+	private LocalDateTime fecha;
 
-@Column(name = "MontoTotal", nullable = false, precision= 11,scale =2)
-private Double montoTotal;
+	@Column(name = "MontoTotal", nullable = false, precision = 11, scale = 2)
+	private Double montoTotal;
 
-@Column(name = "guiaRemision", nullable = false, length = 10)
-private String guiaRemision;
+	@Column(name = "guiaRemision", nullable = false, length = 10)
+	private String guiaRemision;
 
+	@OneToMany(
+	        mappedBy = "compra", 
+	        cascade = CascadeType.ALL, 
+	        orphanRemoval = true
+	    )
+	private List<DetalleCompra> detalleCompra= new ArrayList<>();;
 
-public int getIdCompra() {
-	return idCompra;
-}
+	public int getIdCompra() {
+		return idCompra;
+	}
 
-public Sucursal getSucursal() {
-	return sucursal;
-}
+	public void setIdCompra(int idCompra) {
+		this.idCompra = idCompra;
+	}
 
-public void setSucursal(Sucursal sucursal) {
-	this.sucursal = sucursal;
-}
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
 
-public Double getMontoTotal() {
-	return montoTotal;
-}
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
 
-public void setMontoTotal(Double montoTotal) {
-	this.montoTotal = montoTotal;
-}
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
 
-public String getGuiaRemision() {
-	return guiaRemision;
-}
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
+	}
 
-public void setGuiaRemision(String guiaRemision) {
-	this.guiaRemision = guiaRemision;
-}
+	public LocalDateTime getFecha() {
+		return fecha;
+	}
 
-public void setIdCompra(int idCompra) {
-	this.idCompra = idCompra;
-}
+	public void setFecha(LocalDateTime fecha) {
+		this.fecha = fecha;
+	}
 
-public Proveedor getProveedor() {
-	return proveedor;
-}
+	public Double getMontoTotal() {
+		return montoTotal;
+	}
 
-public void setProveedor(Proveedor proveedor) {
-	this.proveedor = proveedor;
-}
+	public void setMontoTotal(Double montoTotal) {
+		this.montoTotal = montoTotal;
+	}
 
-public LocalDateTime getFecha() {
-	return fecha;
-}
+	public String getGuiaRemision() {
+		return guiaRemision;
+	}
 
-public void setFecha(LocalDateTime fecha) {
-	this.fecha = fecha;
-}
+	public void setGuiaRemision(String guiaRemision) {
+		this.guiaRemision = guiaRemision;
+	}
 
+	public List<DetalleCompra> getDetalleCompra() {
+		return detalleCompra;
+	}
+
+	public void setDetalleCompra(List<DetalleCompra> detalleCompra) {
+		this.detalleCompra = detalleCompra;
+	}
 }
