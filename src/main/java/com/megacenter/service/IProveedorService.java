@@ -4,16 +4,16 @@ import java.util.List;
 
 import com.megacenter.Model.Proveedor;
 
-
 public interface IProveedorService {
-	void registrar(Proveedor proveedor);
+
+	Proveedor registrar(Proveedor proveedor);
+
 	void modificar(Proveedor proveedor);
-	void eliminar (int idProveedor);
+
+	void eliminar(int idProveedor);
+
 	Proveedor listarId(int idProveedor);
-	List<Proveedor>listar();
-	
+
+	List<Proveedor> listar();
+
 }
-
-
-
-

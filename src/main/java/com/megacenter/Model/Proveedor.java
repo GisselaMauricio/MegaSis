@@ -5,32 +5,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "proveedor")
 public class Proveedor {
 	@Id
-	/*not exists operation on sqlite*/
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProveedor;
 
-	@Column(name = "nombre", nullable = true, length = 70)
-	private String nombre;
+	@Column(name = "nombreComercial", nullable = false, length = 100)
+	private String nombreComercial;
 
-	@Column(name = "ruc", nullable = false, length = 11)
-	private String ruc;
+	@Column(name = "razonSocial", nullable = false, length = 50)
+	private String razonSocial;
 
-	@Column(name = "telefono", length = 9)
-	private String telefono;
+	@Column(name = "paginaWeb", nullable = true, length = 50)
+	private String paginaWeb;
 
-	public String getRuc() {
-		return ruc;
-	}
+	@Column(name = "telefonoEmpresa", nullable = true, length = 9)
+	private String telfEmpresa;
 
-	public void setRuc(String ruc) {
-		this.ruc = ruc;
-	}
+	@OneToOne
+	@JoinColumn(name = "id_persona", nullable = false)
+	private Persona persona;
 
 	public int getIdProveedor() {
 		return idProveedor;
@@ -40,21 +40,44 @@ public class Proveedor {
 		this.idProveedor = idProveedor;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreComercial() {
+		return nombreComercial;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreComercial(String nombreComercial) {
+		this.nombreComercial = nombreComercial;
 	}
 
-	
-	public String getTelefono() {
-		return telefono;
+	public String getRazonSocial() {
+		return razonSocial;
 	}
 
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public void setRazonSocial(String razonSocial) {
+		this.razonSocial = razonSocial;
+	}
+
+	public String getPaginaWeb() {
+		return paginaWeb;
+	}
+
+	public void setPaginaWeb(String paginaWeb) {
+		this.paginaWeb = paginaWeb;
+	}
+
+	public String getTelfEmpresa() {
+		return telfEmpresa;
+	}
+
+	public void setTelfEmpresa(String telfEmpresa) {
+		this.telfEmpresa = telfEmpresa;
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 
 }
