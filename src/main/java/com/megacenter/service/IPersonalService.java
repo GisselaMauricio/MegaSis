@@ -2,7 +2,7 @@ package com.megacenter.service;
 
 import java.util.List;
 
-import com.megacenter.Model.Persona;
+
 import com.megacenter.Model.Personal;
 
 public interface IPersonalService {

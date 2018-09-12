@@ -46,7 +46,7 @@ public class Compra {
 	        cascade = CascadeType.ALL, 
 	        orphanRemoval = true
 	    )
-	private List<DetalleCompra> detalleCompra= new ArrayList<>();;
+	private List<DetalleCompra> detalleCompra= new ArrayList<>();
 
 	public int getIdCompra() {
 		return idCompra;

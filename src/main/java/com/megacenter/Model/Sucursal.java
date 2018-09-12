@@ -12,19 +12,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sucrusal")
 public class Sucursal {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSocursal;
-	
+
 	@Column(name = "nombre", nullable = true, length = 70)
 	private String nombre;
-	
+
 	@Column(name = "direccion", nullable = true, length = 70)
 	private String direccion;
-	
+
+	//@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "id_organizacion", nullable = false)
+	//private Organizacion organizacion;
 	@ManyToOne
-	@JoinColumn(name="id_Organizacion", nullable=false)
+	@JoinColumn(name = "id_organizacion", nullable = false)
 	private Organizacion organizacion;
 
 	public int getIdSocursal() {
@@ -58,6 +61,8 @@ public class Sucursal {
 	public void setOrganizacion(Organizacion organizacion) {
 		this.organizacion = organizacion;
 	}
+
 	
 
+	
 }
