@@ -21,21 +21,22 @@ public class Organizacion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idOrganizacion;
 
-	@Column(name = "nombreComercial", nullable = true, length = 70)
+	@Column(name = "nombreComercial", nullable = true, length = 100)
 	private String nombreComercial;
 
-	@Column(name = "razonSocial", nullable = true, length = 70)
+	@Column(name = "razonSocial", nullable = true, length = 100)
 	private String razonSocial;
 
-	@Column(name = "ruc", nullable = false, length = 8)
+	@Column(name = "ruc", nullable = false, length = 11)
 	private String ruc;
 
 	@Column(name = "telefono", length = 9)
 	private String telefono;
+	
 	@Column(name = "email", nullable = true, length = 30)
 	private String email;
 
-	@Column(name = "direccion", length = 20)
+	@Column(name = "direccion", length = 100)
 	private String direccion;
 
 	
