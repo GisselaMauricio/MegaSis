@@ -17,18 +17,10 @@ public class Organizacion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idOrganizacion;
 
-<<<<<<< HEAD
 	@Column(name = "nombreComercial", nullable = true, length = 100)
-=======
-	@Column(name = "nombreComercial", nullable = false, length = 70)
->>>>>>> branch 'master' of https://github.com/GisselaMauricio/MegaSis.git
 	private String nombreComercial;
 
-<<<<<<< HEAD
 	@Column(name = "razonSocial", nullable = true, length = 100)
-=======
-	@Column(name = "razonSocial", nullable = false, length = 70)
->>>>>>> branch 'master' of https://github.com/GisselaMauricio/MegaSis.git
 	private String razonSocial;
 
 	@Column(name = "ruc", nullable = false, length = 11)
