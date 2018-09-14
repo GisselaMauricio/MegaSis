@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.megacenter.Model.Compra;
-import com.megacenter.Model.DetalleCompra;
 import com.megacenter.service.ICompraService;
-import com.megacenter.service.IDetalleCompraService;
+
 
 
 
@@ -25,8 +24,7 @@ import com.megacenter.service.IDetalleCompraService;
 public class CompraController  {
 	@Autowired
 	private ICompraService service;
-	@Autowired
-	private IDetalleCompraService ser;
+	
 
 	@GetMapping( value ="/listar",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Compra>> listar(){
@@ -50,15 +48,7 @@ public class CompraController  {
 		}return new ResponseEntity<Compra>(c, HttpStatus.OK);
 	}
 
-	@PostMapping(value ="/registrarde", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<DetalleCompra> registrar(@RequestBody DetalleCompra detalleCompra) {
-		DetalleCompra det=new DetalleCompra();
-		try {
-			det=ser.registrar(detalleCompra);			
-		} catch (Exception e) {
-			return new ResponseEntity<DetalleCompra>(det, HttpStatus.INTERNAL_SERVER_ERROR);
-		}return new ResponseEntity<DetalleCompra>(det, HttpStatus.OK);
-	}
+	
 	
 			
 	
