@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.megacenter.Model.DetalleVenta;
 import com.megacenter.Model.Venta;
+import com.megacenter.service.IDetalleVentaService;
 import com.megacenter.service.IVentaService;
 
 
@@ -24,6 +25,8 @@ import com.megacenter.service.IVentaService;
 public class VentaController {
 	@Autowired
 	private IVentaService service;
+	@Autowired
+	private IDetalleVentaService ser;
 
 	@GetMapping( value ="/listar",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Venta>> listar(){
@@ -45,4 +48,15 @@ public class VentaController {
 			return new ResponseEntity<Venta>(v, HttpStatus.INTERNAL_SERVER_ERROR);
 		}return new ResponseEntity<Venta>(v, HttpStatus.OK);
 	}
+	
+	@PostMapping(value ="/registrarde", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<DetalleVenta> registrar(@RequestBody DetalleVenta detalleVenta) {
+		DetalleVenta detv=new DetalleVenta();
+		try {
+			detv=ser.registrar(detalleVenta);			
+		} catch (Exception e) {
+			return new ResponseEntity<DetalleVenta>(detv, HttpStatus.INTERNAL_SERVER_ERROR);
+		}return new ResponseEntity<DetalleVenta>(detv, HttpStatus.OK);
+	}
+	
 }

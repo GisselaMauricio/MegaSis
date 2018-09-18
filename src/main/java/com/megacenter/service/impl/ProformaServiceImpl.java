@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.megacenter.Model.Proforma;
 import com.megacenter.dao.IProformaDAO;
-import com.megacenter.dao.IProveedorDAO;
 import com.megacenter.service.IProformaService;
 
 @Service
