@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,12 +20,9 @@ public class Almacen {
 	@Column(name = "nombreAlmacen", nullable = false, length = 50)
 	private String nombreAlmacen;
 
-	@Column(name = "stock", nullable = false, length = 11)
-	private int stock;
-
-	@OneToMany
-	@JoinColumn(name = "id_producto", nullable = false)
-	private Producto producto;
+	@ManyToOne
+	@JoinColumn(name = "id_Socursal", nullable = false)
+	private Sucursal sucursal;
 
 	public int getIdAlmacen() {
 		return idAlmacen;
@@ -43,20 +40,12 @@ public class Almacen {
 		this.nombreAlmacen = nombreAlmacen;
 	}
 
-	public int getStock() {
-		return stock;
+	public Sucursal getSucursal() {
+		return sucursal;
 	}
 
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-
-	public Producto getProducto() {
-		return producto;
-	}
-
-	public void setProducto(Producto producto) {
-		this.producto = producto;
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
 	}
 
 }
