@@ -3,6 +3,7 @@ package com.megacenter.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.megacenter.Model.Compra;
@@ -12,7 +13,7 @@ import com.megacenter.dao.IDetalleCompraDAO;
 import com.megacenter.service.ICompraService;
 
 
-
+@Service
 public class CompraServiceImpl implements ICompraService{
 	@Autowired
 	private ICompraDAO dao;
