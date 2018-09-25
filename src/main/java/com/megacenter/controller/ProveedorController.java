@@ -34,7 +34,7 @@ public class ProveedorController {
 	}
 
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Proveedor> listarId(@PathVariable("id") Integer id) {
+	public ResponseEntity<Proveedor> listarId(@PathVariable Integer id) {
 		Proveedor proveedor = new Proveedor();
 		proveedor = service.listarId(id);
 		return new ResponseEntity<Proveedor>(proveedor, HttpStatus.OK);
