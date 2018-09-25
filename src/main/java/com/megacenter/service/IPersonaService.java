@@ -12,7 +12,7 @@ public interface IPersonaService {
 
 	void eliminar(int idPersona);
 
-	Persona listar(int idPersona);
+	Persona listarId(int idPersona);
 
 	List<Persona> listar();
 }
