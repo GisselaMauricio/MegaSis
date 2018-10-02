@@ -34,11 +34,12 @@ public class ProveedorController {
 	}
 
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Proveedor> listarId(@PathVariable("id") Integer id) {
+	public ResponseEntity<Proveedor> listarId(@PathVariable Integer id) {
 		Proveedor proveedor = new Proveedor();
 		proveedor = service.listarId(id);
 		return new ResponseEntity<Proveedor>(proveedor, HttpStatus.OK);
 	}
+	
 
 	@PostMapping(value = "/registrar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Integer> registrar(@RequestBody Proveedor proveedor) {
@@ -64,7 +65,7 @@ public class ProveedorController {
 		return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = "/eliminar", produces = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value = "/eliminar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Integer> eliminar(@PathVariable Integer id) {
 		int resultado = 0;
 		try {
