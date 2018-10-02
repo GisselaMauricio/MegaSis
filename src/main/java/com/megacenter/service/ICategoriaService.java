@@ -8,7 +8,7 @@ public interface ICategoriaService {
 
 	void registrar(Categoria categoria);
 
-	void modificar(Categoria categoria);
+	void actualizar(Categoria categoria);
 
 	void eliminar(int idCategoria);
 

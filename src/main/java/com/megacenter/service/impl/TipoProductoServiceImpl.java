@@ -22,9 +22,8 @@ public class TipoProductoServiceImpl implements ITipoProductoService {
 	}
 
 	@Override
-	public void modificar(TipoProducto tipoProducto) {
+	public void actualizar(TipoProducto tipoProducto) {
 		dao.save(tipoProducto);
-
 	}
 
 	@Override

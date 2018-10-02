@@ -16,7 +16,7 @@ public class TipoDocumentoServiceImpl implements ITipoDocumentoService {
 	private ITipoDocumentoDAO dao;
 
 	@Override
-	public void registar(TipoDocumeto tipoDocumeto) {
+	public void registrar(TipoDocumeto tipoDocumeto) {
 		dao.save(tipoDocumeto);
 
 	}

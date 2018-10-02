@@ -33,7 +33,7 @@ public class ProductoServiceImpl implements IProductoService {
 	}
 
 	@Override
-	public Producto listar(int idProducto) {
+	public Producto listarId(int idProducto) {
 		return dao.findById(idProducto).get();
 	}
 

@@ -13,36 +13,36 @@ public class TipoDocumeto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idTipoDocumento;
+	private int idTipodocumento;
 
 	@Column(name = "abreviatura", nullable = true, length = 20)
-	private String Abreviatura;
+	private String abreviatura;
 
 	@Column(name = "denominacion", nullable = true, length = 50)
-	private String Denominacion;
+	private String denominacion;
 
-	public int getIdTipoDocumento() {
-		return idTipoDocumento;
+	public int getIdTipodocumento() {
+		return idTipodocumento;
 	}
 
-	public void setIdTipoDocumento(int idTipoDocumento) {
-		this.idTipoDocumento = idTipoDocumento;
+	public void setIdTipodocumento(int idTipodocumento) {
+		this.idTipodocumento = idTipodocumento;
 	}
 
 	public String getAbreviatura() {
-		return Abreviatura;
+		return abreviatura;
 	}
 
 	public void setAbreviatura(String abreviatura) {
-		Abreviatura = abreviatura;
+		this.abreviatura = abreviatura;
 	}
 
 	public String getDenominacion() {
-		return Denominacion;
+		return denominacion;
 	}
 
 	public void setDenominacion(String denominacion) {
-		Denominacion = denominacion;
+		this.denominacion = denominacion;
 	}
 
 }

@@ -44,8 +44,12 @@ public class Producto {
 	private Categoria categoria;
 
 	@ManyToOne
-	@JoinColumn(name = "id_tipoproducto", nullable = true)
+	@JoinColumn(name = "id_tipoproducto", nullable = false)
 	private TipoProducto tipoProducto;
+
+	@ManyToOne
+	@JoinColumn(name = "id_organizacion", nullable = false)
+	private Organizacion organizacion;
 
 	public int getIdProducto() {
 		return idProducto;
@@ -125,6 +129,14 @@ public class Producto {
 
 	public void setTipoProducto(TipoProducto tipoProducto) {
 		this.tipoProducto = tipoProducto;
+	}
+
+	public Organizacion getOrganizacion() {
+		return organizacion;
+	}
+
+	public void setOrganizacion(Organizacion organizacion) {
+		this.organizacion = organizacion;
 	}
 
 }

@@ -4,10 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
-import org.springframework.transaction.annotation.Transactional;
-=======
->>>>>>> branch 'master' of https://github.com/GisselaMauricio/MegaSis.git
 
 import com.megacenter.Model.Compra;
 import com.megacenter.Model.DetalleCompra;

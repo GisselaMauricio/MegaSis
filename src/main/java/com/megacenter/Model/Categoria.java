@@ -15,7 +15,7 @@ public class Categoria {
 	private int idCategoria;
 
 	@Column(name = "descripcion", nullable = true, length = 50)
-	private String Descripcion;
+	private String descripcion;
 
 	public int getIdCategoria() {
 		return idCategoria;
@@ -26,11 +26,11 @@ public class Categoria {
 	}
 
 	public String getDescripcion() {
-		return Descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
+		this.descripcion = descripcion;
 	}
 
 }

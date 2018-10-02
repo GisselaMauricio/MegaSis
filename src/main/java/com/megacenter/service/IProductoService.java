@@ -12,7 +12,7 @@ public interface IProductoService {
 
 	void eliminar(int idProducto);
 
-	Producto listar(int idProducto);
+	Producto listarId(int idProducto);
 
 	List<Producto> listar();
 }

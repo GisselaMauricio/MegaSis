@@ -8,7 +8,7 @@ public interface ITipoProductoService {
 
 	void registrar(TipoProducto tipoProducto);
 
-	void modificar(TipoProducto tipoProducto);
+	void actualizar(TipoProducto tipoProducto);
 
 	void eliminar(int idTipoProducto);
 

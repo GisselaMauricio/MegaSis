@@ -29,17 +29,17 @@ public class PersonaServiceImpl implements IPersonaService {
 	@Override
 	public void eliminar(int idPersona) {
 		dao.deleteById(idPersona);
-
-	}
-
-	@Override
-	public Persona listar(int idPersona) {
-		return dao.findById(idPersona).get();
 	}
 
 	@Override
 	public List<Persona> listar() {
 		return dao.findAll();
+	}
+
+	@Override
+	public Persona listarId(int idPersona) {
+		// TODO Auto-generated method stub
+		return dao.findById(idPersona).get();
 	}
 
 }

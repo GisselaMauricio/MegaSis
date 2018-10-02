@@ -12,36 +12,36 @@ import javax.persistence.Table;
 public class UnidadMedida {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idUnidadMedida;
+	private int idUnidadmedida;
 
-	@Column(name = "codUnidadMedida", nullable = false, length = 20)
-	private String CodUnidadMedida;
+	@Column(name = "codUnidadmedida", nullable = false, length = 20)
+	private String codUnidadmedida;
 
 	@Column(name = "descripcion", nullable = true, length = 50)
-	private String Descripcion;
+	private String descripcion;
 
-	public int getIdUnidadMedida() {
-		return idUnidadMedida;
+	public int getIdUnidadmedida() {
+		return idUnidadmedida;
 	}
 
-	public void setIdUnidadMedida(int idUnidadMedida) {
-		this.idUnidadMedida = idUnidadMedida;
+	public void setIdUnidadmedida(int idUnidadmedida) {
+		this.idUnidadmedida = idUnidadmedida;
 	}
 
-	public String getCodUnidadMedida() {
-		return CodUnidadMedida;
+	public String getCodUnidadmedida() {
+		return codUnidadmedida;
 	}
 
-	public void setCodUnidadMedida(String codUnidadMedida) {
-		CodUnidadMedida = codUnidadMedida;
+	public void setCodUnidadmedida(String codUnidadmedida) {
+		this.codUnidadmedida = codUnidadmedida;
 	}
 
 	public String getDescripcion() {
-		return Descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
+		this.descripcion = descripcion;
 	}
 
 }

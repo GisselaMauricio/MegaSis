@@ -13,25 +13,25 @@ public class TipoProducto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idTipoProducto;
+	private int idTipoproducto;
 
 	@Column(name = "descripcion", nullable = true, length = 50)
-	private String Descripcion;
+	private String descripcion;
 
-	public int getIdTipoProducto() {
-		return idTipoProducto;
+	public int getIdTipoproducto() {
+		return idTipoproducto;
 	}
 
-	public void setIdTipoProducto(int idTipoProducto) {
-		this.idTipoProducto = idTipoProducto;
+	public void setIdTipoproducto(int idTipoproducto) {
+		this.idTipoproducto = idTipoproducto;
 	}
 
 	public String getDescripcion() {
-		return Descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
+		this.descripcion = descripcion;
 	}
 
 }

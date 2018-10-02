@@ -17,10 +17,10 @@ public class Sucursal {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSocursal;
 
-	@Column(name = "nombre", nullable = true, length = 70)
+	@Column(name = "nombre", nullable = true, length = 100)
 	private String nombre;
 
-	@Column(name = "direccion", nullable = true, length = 70)
+	@Column(name = "direccion", nullable = true, length = 100)
 	private String direccion;
 
 	//@ManyToOne(fetch = FetchType.LAZY)

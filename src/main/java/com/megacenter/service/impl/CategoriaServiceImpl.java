@@ -22,9 +22,8 @@ public class CategoriaServiceImpl implements ICategoriaService {
 	}
 
 	@Override
-	public void modificar(Categoria categoria) {
+	public void actualizar(Categoria categoria) {
 		dao.save(categoria);
-
 	}
 
 	@Override

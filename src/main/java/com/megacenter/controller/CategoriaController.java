@@ -25,21 +25,20 @@ public class CategoriaController {
 
 	@Autowired
 	private ICategoriaService service;
-
-	@GetMapping(value = "/listar", produces = "application/json")
+	
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Categoria>> listar() {
-		List<Categoria> lista = new ArrayList<>();
+		List<Categoria> categorias = new ArrayList<>();
 		try {
-
-			lista = service.listar();
-
+			categorias = service.listar();
 		} catch (Exception e) {
-			return new ResponseEntity<List<Categoria>>(lista, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<Categoria>>(categorias, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<List<Categoria>>(lista, HttpStatus.OK);
+
+		return new ResponseEntity<List<Categoria>>(categorias, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/listar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Categoria> listarId(@PathVariable("id") Integer id) {
 		Categoria categoria = new Categoria();
 		try {
@@ -65,17 +64,15 @@ public class CategoriaController {
 		}
 		return new ResponseEntity<Integer>(resulatado, HttpStatus.OK);
 	}
-
+	
 	@PutMapping(value = "/actualizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Integer> actualizar(@RequestBody Categoria categoria) {
 		int resultado = 0;
 		try {
-
-			service.modificar(categoria);
+			service.actualizar(categoria);
 			resultado = 1;
-
 		} catch (Exception e) {
-			return new ResponseEntity<Integer>(resultado, HttpStatus.INTERNAL_SERVER_ERROR);
+			resultado = 0;
 		}
 		return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
 	}
