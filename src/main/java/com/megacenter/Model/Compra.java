@@ -35,7 +35,7 @@ public class Compra {
 	@JsonSerialize(using = ToStringSerializer.class)
 	private LocalDateTime fecha;
 
-	@Column(name = "MontoTotal", nullable = false, precision = 11, scale = 2)
+	@Column(name = "montoTotal", nullable = false, precision = 11, scale = 2)
 	private Double montoTotal;
 
 	@Column(name = "guiaRemision", nullable = false, length = 10)
