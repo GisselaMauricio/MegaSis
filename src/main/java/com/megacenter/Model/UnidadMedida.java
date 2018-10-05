@@ -20,6 +20,7 @@ public class UnidadMedida {
 	@Column(name = "descripcion", nullable = true, length = 50)
 	private String descripcion;
 
+	//ACTUALIZADO
 	public int getIdUnidadmedida() {
 		return idUnidadmedida;
 	}
