@@ -25,65 +25,63 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.megacenter.Model.Producto;
+import com.megacenter.Model.Sucursal;
 import com.megacenter.exception.ModeloNotFoundException;
-import com.megacenter.service.IProductoService;
+import com.megacenter.service.ISucursalService;
 
 @RestController
-@RequestMapping(value = "/api/productos")
-public class ProductoController {
+@RequestMapping("/api/sucursales")
+public class SucursalController {
 
 	@Autowired
-	private IProductoService service;
+	private ISucursalService service;
 
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Producto>> listar() {
-		List<Producto> productos = new ArrayList<>();
+	public ResponseEntity<List<Sucursal>> listar() {
+		List<Sucursal> sucrusal = new ArrayList<>();
 		try {
-			productos = service.listar();
+			sucrusal = service.listar();
 		} catch (Exception e) {
-			return new ResponseEntity<List<Producto>>(productos, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<Sucursal>>(sucrusal, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return new ResponseEntity<List<Producto>>(productos, HttpStatus.OK);
+		return new ResponseEntity<List<Sucursal>>(sucrusal, HttpStatus.OK);
 	}
-//ACTUALIZADO
+
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Resource<Producto> listarId(@PathVariable("id") Integer id) {
-		Producto productos = new Producto();
-		productos = service.listarId(id);
-		if (productos == null) {
+	public Resource<Sucursal> listarId(@PathVariable("id") Integer id) {
+		Sucursal sucrusal = new Sucursal();
+		sucrusal = service.listarId(id);
+		if (sucrusal == null) {
 			throw new ModeloNotFoundException("ID: " + id);
 		}
-		Resource<Producto> resource = new Resource<Producto>(productos);
+		Resource<Sucursal> resource = new Resource<Sucursal>(sucrusal);
 		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).listar());
-		resource.add(linkTo.withRel("all_Productos"));
+		resource.add(linkTo.withRel("all_Sucursales"));
 		return resource;
 	}
 
 	@PostMapping(value = "/registrar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> registrar(@Valid @RequestBody Producto productos) {
-		service.registrar(productos);
+	public ResponseEntity<Object> registrar(@Valid @RequestBody Sucursal sucrusal) {
+		service.registrar(sucrusal);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(productos.getIdProducto()).toUri();
+				.buildAndExpand(sucrusal.getIdSocursal()).toUri();
 		return ResponseEntity.created(location).build();
-
 	}
 
 	@PutMapping(value = "/actualizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> actualizar(@RequestBody Producto productos) {
-		service.modificar(productos);
+	public ResponseEntity<Object> actualizar(@RequestBody Sucursal sucrusal) {
+		service.modificar(sucrusal);
 		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = "/eliminar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void eliminar(@PathVariable Integer id) {
-		Producto prod = service.listarId(id);
-		if (prod == null) {
+	public void eliminarSu(@PathVariable Integer id) {
+		Sucursal sucrusal = service.listarId(id);
+		if (sucrusal == null) {
 			throw new ModeloNotFoundException("ID: " + id);
 		} else {
 			service.eliminar(id);
 		}
 	}
-
 }

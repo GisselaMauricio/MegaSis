@@ -1,9 +1,17 @@
 package com.megacenter.controller;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +23,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.megacenter.Model.Proveedor;
 import com.megacenter.Model.TipoDocumeto;
+import com.megacenter.exception.ModeloNotFoundException;
 import com.megacenter.service.ITipoDocumentoService;
 
 @RestController
@@ -26,60 +37,46 @@ public class TipoDocumentoController {
 	@Autowired
 	private ITipoDocumentoService service;
 
-	@GetMapping(value = "/listar", produces = "application/json")
+	@GetMapping(value="/listar",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<TipoDocumeto>> listar() {
-		List<TipoDocumeto> lista = new ArrayList<>();
+		List<TipoDocumeto> tipoDocumetos = new ArrayList<>();
 		try {
-
-			lista = service.listar();
-
+			tipoDocumetos = service.listar();
 		} catch (Exception e) {
-			return new ResponseEntity<List<TipoDocumeto>>(lista, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<TipoDocumeto>>(tipoDocumetos, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<List<TipoDocumeto>>(lista, HttpStatus.OK);
+
+		return new ResponseEntity<List<TipoDocumeto>>(tipoDocumetos, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/listar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<TipoDocumeto> listarId(@PathVariable("id") Integer id) {
+	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Resource<TipoDocumeto> listarId(@PathVariable("id") Integer id) {
 		TipoDocumeto tipoDocumeto = new TipoDocumeto();
-		try {
-
-			tipoDocumeto = service.listarId(id);
-
-		} catch (Exception e) {
-			return new ResponseEntity<TipoDocumeto>(tipoDocumeto, HttpStatus.INTERNAL_SERVER_ERROR);
+		tipoDocumeto = service.listarId(id);
+		if (tipoDocumeto == null) {
+			throw new ModeloNotFoundException("ID: " + id);
 		}
-		return new ResponseEntity<TipoDocumeto>(tipoDocumeto, HttpStatus.OK);
+		Resource<TipoDocumeto> resource = new Resource<TipoDocumeto>(tipoDocumeto);
+		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).listar());
+		resource.add(linkTo.withRel("all_tipoDocumetos"));
+		return resource;
 	}
 
 	@PostMapping(value = "/registrar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Integer> registrar(@RequestBody TipoDocumeto tipoDocumeto) {
-		int resulatado = 0;
-		try {
+	public ResponseEntity<Object> registrar(@Valid @RequestBody TipoDocumeto tipoDocumeto) {
+		service.registrar(tipoDocumeto);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(tipoDocumeto.getIdTipodocumento()).toUri();
+		return ResponseEntity.created(location).build();
 
-			service.registar(tipoDocumeto);
-			resulatado = 1;
-
-		} catch (Exception e) {
-			return new ResponseEntity<Integer>(resulatado, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<Integer>(resulatado, HttpStatus.OK);
 	}
 
-	@PutMapping(value = "/actualizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Integer> actualizar(@RequestBody TipoDocumeto tipoDocumeto) {
-		int resultado = 0;
-		try {
-
-			service.modificar(tipoDocumeto);
-			resultado = 1;
-
-		} catch (Exception e) {
-			return new ResponseEntity<Integer>(resultado, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
+	@PutMapping(value="/actualizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> actualizar(@RequestBody TipoDocumeto tipoDocumeto) {
+		service.modificar(tipoDocumeto);
+		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
-
+	
 	@DeleteMapping(value = "/eliminar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Integer> eliminar(@PathVariable Integer id) {
 		int resultado = 0;
@@ -87,7 +84,7 @@ public class TipoDocumentoController {
 			service.eliminar(id);
 			resultado = 1;
 		} catch (Exception e) {
-			return new ResponseEntity<Integer>(resultado, HttpStatus.INTERNAL_SERVER_ERROR);
+			resultado = 0;
 		}
 		return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
 	}

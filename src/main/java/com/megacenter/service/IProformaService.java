@@ -12,7 +12,7 @@ public interface IProformaService {
 
 	void eliminar(int idProforma);
 
-	Proforma listar(int idProforma);
+	Proforma listarId(int idProforma);
 
 	List<Proforma> listar();
 }

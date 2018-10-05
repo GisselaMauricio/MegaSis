@@ -34,7 +34,7 @@ public class ProformaServiceImpl implements IProformaService {
 	}
 
 	@Override
-	public Proforma listar(int idProforma) {
+	public Proforma listarId(int idProforma) {
 		return dao.findById(idProforma).get();
 	}
 

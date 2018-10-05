@@ -12,7 +12,7 @@ public interface IClienteService {
 
 	void eliminar(int idCliente);
 
-	Cliente listar(int idCliente);
+	Cliente listarId(int idCliente);
 
 	List<Cliente> listar();
 }

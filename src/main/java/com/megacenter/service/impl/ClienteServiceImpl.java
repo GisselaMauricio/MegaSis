@@ -33,7 +33,7 @@ public class ClienteServiceImpl implements IClienteService {
 	}
 
 	@Override
-	public Cliente listar(int idCliente) {
+	public Cliente listarId(int idCliente) {
 		return dao.findById(idCliente).get();
 	}
 
