@@ -20,13 +20,13 @@ import com.megacenter.Model.TipoComprobante;
 import com.megacenter.service.ITipoComprobanteService;
 
 @RestController
-@RequestMapping(value = "/api/tipcomprobante")
+@RequestMapping(value = "/api/tipocomprobantes")
 public class TipoComprobanteController {
 
 	@Autowired
 	private ITipoComprobanteService service;
 
-	@GetMapping(value = "/listar", produces = "application/json")
+	@GetMapping( produces = "application/json")
 	public ResponseEntity<List<TipoComprobante>> listar() {
 		List<TipoComprobante> lista = new ArrayList<>();
 		try {
@@ -39,7 +39,7 @@ public class TipoComprobanteController {
 		return new ResponseEntity<List<TipoComprobante>>(lista, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/listar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<TipoComprobante> listarId(@PathVariable("id") Integer id) {
 		TipoComprobante tipoComprobante = new TipoComprobante();
 		try {

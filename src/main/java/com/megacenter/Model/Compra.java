@@ -31,6 +31,10 @@ public class Compra {
 	@ManyToOne
 	@JoinColumn(name = "id_sucursal", nullable = false)
 	private Sucursal sucursal;
+	
+	 @OneToOne
+	 @JoinColumn(name = "id_tipocomprobante", nullable = false)
+	private Sucursal tipoComprobante;
 
 	@JsonSerialize(using = ToStringSerializer.class)
 	private LocalDateTime fecha;
@@ -38,8 +42,11 @@ public class Compra {
 	@Column(name = "montoTotal", nullable = false, precision = 11, scale = 2)
 	private Double montoTotal;
 
-	@Column(name = "guiaRemision", nullable = false, length = 10)
+	@Column(name = "guiaRemision", nullable = false, length = 20)
 	private String guiaRemision;
+	
+	@Column(name="numeroComprobante", nullable = false, length = 20)
+	private String numeroComprobante;
 
 	@OneToMany(
 	        mappedBy = "compra", 
@@ -103,4 +110,20 @@ public class Compra {
 	public void setDetalleCompra(List<DetalleCompra> detalleCompra) {
 		this.detalleCompra = detalleCompra;
 	}
+
+    public Sucursal getTipoComprobante() {
+        return tipoComprobante;
+    }
+
+    public void setTipoComprobante(Sucursal tipoComprobante) {
+        this.tipoComprobante = tipoComprobante;
+    }
+
+    public String getNumeroComprobante() {
+        return numeroComprobante;
+    }
+
+    public void setNumeroComprobante(String numeroComprobante) {
+        this.numeroComprobante = numeroComprobante;
+    }
 }
