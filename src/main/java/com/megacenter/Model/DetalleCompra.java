@@ -1,9 +1,14 @@
 package com.megacenter.Model;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "detalleCompra")
+/*@JsonIdentityInfo(
+		generator=ObjectIdGenerators.PropertyGenerator.class,
+		property="idDetalleCompra")*/
 public class DetalleCompra {
 
 	@Id
@@ -21,6 +26,7 @@ public class DetalleCompra {
 
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_compra")
+	@JsonIgnore
 	private Compra compra;
 
 	@ManyToOne(fetch = FetchType.LAZY)
