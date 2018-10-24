@@ -21,6 +21,11 @@ public class ProductoServiceImpl implements IProductoService {
 	}
 
 	@Override
+	public Producto busar(String a) {
+		return dao.findProductoByCodProducto(a);
+	}
+
+	@Override
 	public void modificar(Producto producto) {
 		dao.save(producto);
 

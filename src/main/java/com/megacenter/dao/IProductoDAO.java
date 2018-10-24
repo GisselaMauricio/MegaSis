@@ -7,6 +7,7 @@ import com.megacenter.Model.Producto;
 
 @Repository
 public interface IProductoDAO extends JpaRepository<Producto, Integer> {
+    Producto findProductoByCodProducto(String codigo);
 	
 
 }

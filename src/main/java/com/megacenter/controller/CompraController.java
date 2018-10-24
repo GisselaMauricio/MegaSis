@@ -24,18 +24,6 @@ public class CompraController {
     private IProductoService productoService;
 
 
-   // @GetMapping(value = "/listar", produces = MediaType.APPLICATION_JSON_VALUE)
- //   public ResponseEntity<List<Compra>> listar() {
-      //  List<Compra> compras = new ArrayList<>();
-      //  try {
-       //     compras = service.listar();
-       // } catch (Exception e) {
-       //     return new ResponseEntity<List<Compra>>(compras, HttpStatus.OK);
-       // }
-       // return new ResponseEntity<List<Compra>>(compras, HttpStatus.OK);
-
-   // }
-
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Compra>> listar() {
@@ -93,4 +81,7 @@ public class CompraController {
         }
         return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
     }
+
+
+
 }

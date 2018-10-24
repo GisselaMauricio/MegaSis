@@ -7,6 +7,7 @@ import com.megacenter.Model.Producto;
 public interface IProductoService {
 
 	Producto registrar(Producto producto);
+	Producto busar(String a);
 
 	void modificar(Producto producto);
 
