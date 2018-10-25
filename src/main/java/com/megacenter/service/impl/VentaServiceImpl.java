@@ -2,6 +2,8 @@ package com.megacenter.service.impl;
 
 import java.util.List;
 
+import com.megacenter.Model.DetalleVenta;
+import com.megacenter.dao.IDetalleVentaDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,29 +15,31 @@ public class VentaServiceImpl implements IVentaService {
 
 	@Autowired
 	private IVentaDAO dao;
+	@Autowired
+	private IDetalleVentaDAO detalle;
 	@Override
 	public Venta registrar(Venta venta) {
-		// TODO Auto-generated method stub
-		return dao.save(venta);
+		Venta vs = dao.save(venta);
+		for (DetalleVenta detalleVenta : vs.getDetalleVenta()) {
+			detalleVenta.setVenta(vs);
+			detalle.save(detalleVenta);
+		}
+		return vs;
 	}
 
 	@Override
 	public void modificar(Venta venta) {
-		// TODO Auto-generated method stub
 		dao.save(venta);
-		
 	}
 
 	@Override
 	public void eliminar(int idventa) {
-		// TODO Auto-generated method stub
 		dao.deleteById(idventa);
 	}
 
 	@Override
 	public Venta listarId(int idventa) {
-		
-		return dao.getOne(idventa);
+		return dao.findById(idventa).get();
 	}
 
 	@Override
