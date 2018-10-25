@@ -18,7 +18,7 @@ public class CompraServiceImpl implements ICompraService {
     private ICompraDAO dao;
     @Autowired
     private IDetalleCompraDAO detalle;
-
+/*ghohllhlhlhlhl*/
     @Override
     public Compra registrar(Compra compra) {
         Compra cs = dao.save(compra);
