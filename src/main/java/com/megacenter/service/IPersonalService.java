@@ -9,11 +9,11 @@ public interface IPersonalService {
 
 	Personal registrar(Personal personal);
 
-	void modificar(Personal personal);
+	Personal modificar(Personal personal);
 
 	void eliminar(int idPersonal);
 
-	Personal listar(int idPersonal);
+	Personal listarId(int idPersonal);
 
 	List<Personal> listar();
 }

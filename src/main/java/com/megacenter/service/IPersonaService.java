@@ -8,7 +8,7 @@ public interface IPersonaService {
 	
 	Persona registrar(Persona persona);
 
-	void modificar(Persona persona);
+	Persona modificar(Persona persona);
 
 	void eliminar(int idPersona);
 

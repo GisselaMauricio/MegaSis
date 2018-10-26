@@ -4,6 +4,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class ProformaController {
 
 		return new ResponseEntity<List<Proforma>>(proformas, HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Resource<Proforma> listarId(@PathVariable("id") Integer id) {
 		Proforma proformas = new Proforma();
@@ -55,16 +56,51 @@ public class ProformaController {
 		return resource;
 	}
 
+	@GetMapping(value = "/numero-proforma", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Proforma> NumeroProforma() {
+		Proforma pro = new Proforma();
+		try {
+			Proforma p = service.getLastProforma();
+			int numero = 1;
+			if (p != null && p.getNumeroProforma() != null) {
+				numero = Integer.parseInt(p.getNumeroProforma());
+				numero = numero + 1;
+			}
+			Formatter fmt = new Formatter();
+			fmt.format("%07d", numero);
+			p.setNumeroProforma(String.valueOf(fmt));
+			return new ResponseEntity<Proforma>(pro, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<Proforma>(pro, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 	@PostMapping(value = "/registrar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Proforma> registrar(@RequestBody Proforma proformas) {
 		Proforma pro = new Proforma();
 		try {
+			if (proformas.getEstadoProforma() == null) {
+				String estado = "COTIZADO";
+				proformas.setEstadoProforma(estado);
+			}
+			if (proformas.getNumeroProforma() != null) {
+				Proforma p = service.getLastProforma();
+				int numero = 1;
+				if (p != null && p.getNumeroProforma() != null) {
+					numero = Integer.parseInt(p.getNumeroProforma());
+					numero = numero + 1;
+				}
+				Formatter fmt = new Formatter();
+				fmt.format("%07d", numero);
+				proformas.setNumeroProforma(String.valueOf(fmt));
+			}
 			pro = service.registrar(proformas);
 
 		} catch (Exception e) {
 			return new ResponseEntity<Proforma>(pro, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<Proforma>(pro, HttpStatus.OK);
+
 	}
 
 }

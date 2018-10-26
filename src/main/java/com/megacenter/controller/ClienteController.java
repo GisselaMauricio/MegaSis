@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
@@ -79,8 +78,10 @@ public class ClienteController {
 	}
 
 	@PutMapping(value = "/actualizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> actualizar(@RequestBody Cliente clientes) {
-		service.modificar(clientes);
+	public ResponseEntity<Object> actualizar(@RequestBody ClienteRepresentation rep) {
+		Persona persona = personaService.modificar(rep.getPersona());
+		rep.getCliente().setPersona(persona);
+		Cliente cliente=service.modificar(rep.getCliente());
 		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
 

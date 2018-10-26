@@ -22,118 +22,110 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 @Table(name = "proforma")
 public class Proforma {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idProforma;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idProforma;
 
-	@JsonSerialize(using = ToStringSerializer.class)
-	private LocalDateTime fecha;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private LocalDateTime fecha;
 
-	@Column(name = "numeroProforma", nullable = false, length = 10)
-	private String numeroProforma;
+    @Column(name = "numeroProforma", nullable = false, length = 10)
+    private String numeroProforma;
 
-	@Column(name = "acuenta", nullable = false, precision = 11, scale = 2)
-	private double acuenta;
+    @Column(name = "acuenta", nullable = false, precision = 11, scale = 2)
+    private double acuenta;
 
-	@Column(name = "saldo", nullable = false, precision = 11, scale = 2)
-	private double saldo;
+    @Column(name = "saldo", nullable = false, precision = 11, scale = 2)
+    private double saldo;
 
-	@Column(name = "total", nullable = false, precision = 11, scale = 2)
-	private double total;
+    @Column(name = "total", nullable = false, precision = 11, scale = 2)
+    private double total;
 
-	@ManyToOne
-	@JoinColumn(name = "id_personal", nullable = false)
-	private Personal personal;
+    //@ManyToOne
+    //@JoinColumn(name = "id_personal", nullable = false)
+    //private Personal personal;
 
-	@ManyToOne
-	@JoinColumn(name = "id_cliente", nullable = false)
-	private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", nullable = false)
+    private Cliente cliente;
 
-	@Column(name = "estadoProforma", nullable = false, length = 10)
-	private String estadoProforma;
+    @Column(name = "estadoProforma", nullable = true, length = 10)
+    private String estadoProforma;
 
-	@OneToMany(mappedBy = "proforma", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<DetalleProforma> detalleProforma;
+    @OneToMany(mappedBy = "proforma", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<DetalleProforma> detalleProforma;
 
-	public int getIdProforma() {
-		return idProforma;
-	}
+    public int getIdProforma() {
+        return idProforma;
+    }
 
-	public void setIdProforma(int idProforma) {
-		this.idProforma = idProforma;
-	}
+    public void setIdProforma(int idProforma) {
+        this.idProforma = idProforma;
+    }
 
-	public LocalDateTime getFecha() {
-		return fecha;
-	}
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
 
-	public void setFecha(LocalDateTime fecha) {
-		this.fecha = fecha;
-	}
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
 
-	public String getNumeroProforma() {
-		return numeroProforma;
-	}
+    public String getNumeroProforma() {
+        return numeroProforma;
+    }
 
-	public void setNumeroProforma(String numeroProforma) {
-		this.numeroProforma = numeroProforma;
-	}
+    public void setNumeroProforma(String numeroProforma) {
+        this.numeroProforma = numeroProforma;
+    }
 
-	public double getAcuenta() {
-		return acuenta;
-	}
+    public double getAcuenta() {
+        return acuenta;
+    }
 
-	public void setAcuenta(double acuenta) {
-		this.acuenta = acuenta;
-	}
+    public void setAcuenta(double acuenta) {
+        this.acuenta = acuenta;
+    }
 
-	public double getSaldo() {
-		return saldo;
-	}
+    public double getSaldo() {
+        return saldo;
+    }
 
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
-	}
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
 
-	public double getTotal() {
-		return total;
-	}
+    public double getTotal() {
+        return total;
+    }
 
-	public void setTotal(double total) {
-		this.total = total;
-	}
+    public void setTotal(double total) {
+        this.total = total;
+    }
 
-	public Personal getPersonal() {
-		return personal;
-	}
+    public Cliente getCliente() {
+        return cliente;
+    }
 
-	public void setPersonal(Personal personal) {
-		this.personal = personal;
-	}
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
-	public Cliente getCliente() {
-		return cliente;
-	}
+    public String getEstadoProforma() {
+        return estadoProforma;
+    }
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+    public void setEstadoProforma(String estadoProforma) {
+        this.estadoProforma = estadoProforma;
+    }
 
-	public String getEstadoProforma() {
-		return estadoProforma;
-	}
+    public List<DetalleProforma> getDetalleProforma() {
+        return detalleProforma;
+    }
 
-	public void setEstadoProforma(String estadoProforma) {
-		this.estadoProforma = estadoProforma;
-	}
-
-	public List<DetalleProforma> getDetalleProforma() {
-		return detalleProforma;
-	}
-
-	public void setDetalleProforma(List<DetalleProforma> detalleProforma) {
-		this.detalleProforma = detalleProforma;
-	}
+    public void setDetalleProforma(List<DetalleProforma> detalleProforma) {
+        this.detalleProforma = detalleProforma;
+    }
 
 }

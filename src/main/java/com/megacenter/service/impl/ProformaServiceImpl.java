@@ -10,7 +10,7 @@ import com.megacenter.dao.IProformaDAO;
 import com.megacenter.service.IProformaService;
 
 @Service
-public class ProformaServiceImpl implements IProformaService {
+public class ProformaServiceImpl implements IProformaService	 {
 
 	@Autowired
 	private IProformaDAO dao;
@@ -41,6 +41,11 @@ public class ProformaServiceImpl implements IProformaService {
 	@Override
 	public List<Proforma> listar() {
 		return dao.findAll();
+	}
+
+	@Override
+	public Proforma getLastProforma() {
+		return dao.getLastProforma();
 	}
 
 }

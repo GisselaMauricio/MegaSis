@@ -13,6 +13,8 @@ public interface IProformaService {
 	void eliminar(int idProforma);
 
 	Proforma listarId(int idProforma);
+	
+	Proforma getLastProforma();
 
 	List<Proforma> listar();
 }

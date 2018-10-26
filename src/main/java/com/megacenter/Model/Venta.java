@@ -16,122 +16,123 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "venta")
 public class Venta {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idVenta;
-	
-	@Column(name = "fecha", nullable = false, precision = 20)	
-	private LocalDateTime fecha;
-	
-	@Column(name = "subTotal", nullable = false, precision = 11, scale = 2)
-	private Double subTotal;
-	
-	@Column(name = "igv", nullable = false, precision = 11, scale = 2)
-	private Double igv;
-	
-	@Column(name = "montoTotal", nullable = false, precision = 11, scale = 2)
-	private Double montoTotal;
-	
-	@Column(name = "estadoVenta", nullable = false )
-	private Double estadoVenta;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idVenta;
 
-	@OneToOne(fetch = FetchType.LAZY)
+    @Column(name = "fecha", nullable = false, precision = 20)
+    private LocalDateTime fecha;
+
+    @Column(name = "subTotal", nullable = false, precision = 11, scale = 2)
+    private Double subTotal;
+
+    @Column(name = "igv", nullable = false, precision = 11, scale = 2)
+    private Double igv;
+
+    @Column(name = "montoTotal", nullable = false, precision = 11, scale = 2)
+    private Double montoTotal;
+
+    @Column(name = "estadoVenta", nullable = false)
+    private Double estadoVenta;
+
+    @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private TipoCambio tipoCambio;
-	
-	@OneToOne(fetch = FetchType.LAZY)
+
+    @OneToOne(fetch = FetchType.LAZY)
     @MapsId
-   private TipoPago tipoPago;
-	
-	@OneToOne
-	@JoinColumn(name = "id_cliente", nullable = false)
-	private Cliente cliente;
-	
-	@OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<DetalleVenta> detalleVenta= new ArrayList<>();
-	
-		public int getIdVenta() {
-		return idVenta;
-	}
+    private TipoPago tipoPago;
 
-	public void setIdVenta(int idVenta) {
-		this.idVenta = idVenta;
-	}
+    @OneToOne
+    @JoinColumn(name = "id_cliente", nullable = false)
+    private Cliente cliente;
 
-	public LocalDateTime getFecha() {
-		return fecha;
-	}
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetalleVenta> detalleVenta = new ArrayList<>();
 
-	public void setFecha(LocalDateTime fecha) {
-		this.fecha = fecha;
-	}
+    public int getIdVenta() {
+        return idVenta;
+    }
 
-	public Double getSubTotal() {
-		return subTotal;
-	}
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
+    }
 
-	public void setSubTotal(Double subTotal) {
-		this.subTotal = subTotal;
-	}
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
 
-	public Double getIgv() {
-		return igv;
-	}
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
 
-	public void setIgv(Double igv) {
-		this.igv = igv;
-	}
+    public Double getSubTotal() {
+        return subTotal;
+    }
 
-	public Double getMontoTotal() {
-		return montoTotal;
-	}
+    public void setSubTotal(Double subTotal) {
+        this.subTotal = subTotal;
+    }
 
-	public void setMontoTotal(Double montoTotal) {
-		this.montoTotal = montoTotal;
-	}
+    public Double getIgv() {
+        return igv;
+    }
 
-	public Double getEstadoVenta() {
-		return estadoVenta;
-	}
+    public void setIgv(Double igv) {
+        this.igv = igv;
+    }
 
-	public void setEstadoVenta(Double estadoVenta) {
-		this.estadoVenta = estadoVenta;
-	}
+    public Double getMontoTotal() {
+        return montoTotal;
+    }
 
-	public TipoCambio getTipoCambio() {
-		return tipoCambio;
-	}
+    public void setMontoTotal(Double montoTotal) {
+        this.montoTotal = montoTotal;
+    }
 
-	public void setTipoCambio(TipoCambio tipoCambio) {
-		this.tipoCambio = tipoCambio;
-	}
+    public Double getEstadoVenta() {
+        return estadoVenta;
+    }
 
-	public TipoPago getTipoPago() {
-		return tipoPago;
-	}
+    public void setEstadoVenta(Double estadoVenta) {
+        this.estadoVenta = estadoVenta;
+    }
 
-	public void setTipoPago(TipoPago tipoPago) {
-		this.tipoPago = tipoPago;
-	}
+    public TipoCambio getTipoCambio() {
+        return tipoCambio;
+    }
 
-	public Cliente getCliente() {
-		return cliente;
-	}
+    public void setTipoCambio(TipoCambio tipoCambio) {
+        this.tipoCambio = tipoCambio;
+    }
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+    public TipoPago getTipoPago() {
+        return tipoPago;
+    }
 
-	public List<DetalleVenta> getDetalleVenta() {
-		return detalleVenta;
-	}
+    public void setTipoPago(TipoPago tipoPago) {
+        this.tipoPago = tipoPago;
+    }
 
-	public void setDetalleVenta(List<DetalleVenta> detalleVenta) {
-		this.detalleVenta = detalleVenta;
-	}
-	
-	
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<DetalleVenta> getDetalleVenta() {
+        return detalleVenta;
+    }
+
+    public void setDetalleVenta(List<DetalleVenta> detalleVenta) {
+        this.detalleVenta = detalleVenta;
+    }
+
+
 }

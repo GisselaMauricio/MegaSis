@@ -21,8 +21,8 @@ public class PersonalServiceImpl implements IPersonalService {
 	}
 
 	@Override
-	public void modificar(Personal personal) {
-		dao.save(personal);
+	public Personal modificar(Personal personal) {
+		return dao.save(personal);
 
 	}
 
@@ -33,7 +33,7 @@ public class PersonalServiceImpl implements IPersonalService {
 	}
 
 	@Override
-	public Personal listar(int idPersonal) {
+	public Personal listarId(int idPersonal) {
 		return dao.findById(idPersonal).get();
 	}
 

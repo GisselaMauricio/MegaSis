@@ -21,8 +21,8 @@ public class PersonaServiceImpl implements IPersonaService {
 	}
 
 	@Override
-	public void modificar(Persona persona) {
-		dao.save(persona);
+	public Persona modificar(Persona persona) {
+		return dao.save(persona);
 
 	}
 
