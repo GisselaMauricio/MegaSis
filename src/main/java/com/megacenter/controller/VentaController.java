@@ -3,6 +3,8 @@ package com.megacenter.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.megacenter.Model.Producto;
+import com.megacenter.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,10 +22,12 @@ import com.megacenter.service.IVentaService;
 public class VentaController {
 	@Autowired
 	private IVentaService service;
+	@Autowired
+	private IProductoService productoService;
 
 
 
-	@GetMapping( value ="/listar",produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Venta>> listar(){
 		List<Venta> ventas=new ArrayList<>();
 		try {
@@ -46,7 +50,12 @@ public class VentaController {
 	public ResponseEntity<Venta> registrar(@RequestBody Venta venta) {
 		Venta v=new Venta();
 		try {
-			v=service.registrar(venta);			
+			v.getDetalleVenta().forEach(detallev -> {
+				Producto producto = detallev.getProducto();
+				producto.setStock(producto.getStock() - Integer.parseInt(detallev.getCantidad()));
+				productoService.modificar(producto);
+			});
+
 		} catch (Exception e) {
 			return new ResponseEntity<Venta>(v, HttpStatus.INTERNAL_SERVER_ERROR);
 		}return new ResponseEntity<Venta>(v, HttpStatus.OK);
@@ -75,5 +84,6 @@ public class VentaController {
 		}
 		return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
 	}
-	
+
+
 }

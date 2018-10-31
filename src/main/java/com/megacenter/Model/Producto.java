@@ -30,10 +30,10 @@ public class Producto {
 	private int stock;
 
 	@Column(name = "precioCompra", nullable = false, precision = 11, scale = 2)
-	private double precioCompra;
+	private Double precioCompra;
 
 	@Column(name = "precioVenta", nullable = false, precision = 11, scale = 2)
-	private double precioVenta;
+	private Double precioVenta;
 
 	@ManyToOne
 	@JoinColumn(name = "id_unidadmedida", nullable = false)
@@ -91,19 +91,19 @@ public class Producto {
 		this.stock = stock;
 	}
 
-	public double getPrecioCompra() {
+	public Double getPrecioCompra() {
 		return precioCompra;
 	}
 
-	public void setPrecioCompra(double precioCompra) {
+	public void setPrecioCompra(Double precioCompra) {
 		this.precioCompra = precioCompra;
 	}
 
-	public double getPrecioVenta() {
+	public Double getPrecioVenta() {
 		return precioVenta;
 	}
 
-	public void setPrecioVenta(double precioVenta) {
+	public void setPrecioVenta(Double precioVenta) {
 		this.precioVenta = precioVenta;
 	}
 

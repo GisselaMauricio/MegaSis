@@ -2,6 +2,8 @@ package com.megacenter.Model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,16 +25,14 @@ public class DetalleVenta {
 	private String cantidad;
 	
 	@Column(name = "precio", nullable = true, precision = 11, scale = 2)
-	private String precio;
+	private Double precio;
 	
-	@Column(name = "importeTotal", nullable = true, precision = 11, scale = 2)
-	private String importeTotal;
-	
-	@Column(name = "stockActual", nullable = true, length = 11)
-	private String stockActual;
+	@Column(name = "importeTotalItem", nullable = true, precision = 11, scale = 2)
+	private Double importeTotalItem;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_venta")
+	@JsonIgnore
 	private Venta venta;
 			
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -55,28 +55,12 @@ public class DetalleVenta {
 		this.cantidad = cantidad;
 	}
 
-	public String getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(String precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
-	}
-
-	public String getImporteTotal() {
-		return importeTotal;
-	}
-
-	public void setImporteTotal(String importeTotal) {
-		this.importeTotal = importeTotal;
-	}
-
-	public String getStockActual() {
-		return stockActual;
-	}
-
-	public void setStockActual(String stockActual) {
-		this.stockActual = stockActual;
 	}
 
 	public Venta getVenta() {
@@ -94,7 +78,13 @@ public class DetalleVenta {
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
-	
-	
-	
+
+
+	public Double getImporteTotalItem() {
+		return importeTotalItem;
+	}
+
+	public void setImporteTotalItem(Double importeTotalItem) {
+		this.importeTotalItem = importeTotalItem;
+	}
 }

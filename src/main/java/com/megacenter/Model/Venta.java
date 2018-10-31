@@ -38,17 +38,29 @@ public class Venta {
 	@Column(name = "estadoVenta", nullable = false )
 	private Double estadoVenta;
 
+    @Column(name = "serieComprobante", nullable = false,  length = 10)
+    private String serieComprobante;
+
+    @Column(name = "numeroComprobante", nullable = false, length = 10)
+    private String numeroComprobante;
+
+
 	@OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private TipoCambio tipoCambio;
 	
 	@OneToOne(fetch = FetchType.LAZY)
     @MapsId
-   private TipoPago tipoPago;
-	
+    private TipoPago tipoPago;
+
+    @OneToOne
+    @JoinColumn(name = "id_tipocomprobante", nullable = false)
+    private TipoComprobante tipocomprobante;
+
 	@OneToOne
 	@JoinColumn(name = "id_cliente", nullable = false)
 	private Cliente cliente;
+
 	
 	@OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<DetalleVenta> detalleVenta= new ArrayList<>();
@@ -132,6 +144,29 @@ public class Venta {
 	public void setDetalleVenta(List<DetalleVenta> detalleVenta) {
 		this.detalleVenta = detalleVenta;
 	}
-	
-	
+
+
+	public String getSerieComprobante() {
+		return serieComprobante;
+	}
+
+	public void setSerieComprobante(String serieComprobante) {
+		this.serieComprobante = serieComprobante;
+	}
+
+	public String getNumeroComprobante() {
+		return numeroComprobante;
+	}
+
+	public void setNumeroComprobante(String numeroComprobante) {
+		this.numeroComprobante = numeroComprobante;
+	}
+
+	public TipoComprobante getTipocomprobante() {
+		return tipocomprobante;
+	}
+
+	public void setTipocomprobante(TipoComprobante tipocomprobante) {
+		this.tipocomprobante = tipocomprobante;
+	}
 }
