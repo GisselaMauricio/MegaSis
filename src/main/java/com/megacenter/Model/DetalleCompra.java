@@ -16,13 +16,13 @@ public class DetalleCompra {
 	private int idDetalleCompra;
 
 	@Column(name = "precioItem", nullable = true, precision = 11, scale = 2)
-	private String precioItem;
+	private Double precioItem;
 
 	@Column(name = "cantidaditem", nullable = true, length = 11)
 	private String cantidaditem;
 
 	@Column(name = "importeTotalItem", nullable = true, precision = 11, scale = 2)
-	private String importeTotalItem;
+	private Double importeTotalItem;
 
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_compra")
@@ -41,11 +41,11 @@ public class DetalleCompra {
 		this.idDetalleCompra = idDetalleCompra;
 	}
 
-	public String getPrecioItem() {
+	public Double getPrecioItem() {
 		return precioItem;
 	}
 
-	public void setPrecioItem(String precioItem) {
+	public void setPrecioItem(Double precioItem) {
 		this.precioItem = precioItem;
 	}
 
@@ -57,11 +57,11 @@ public class DetalleCompra {
 		this.cantidaditem = cantidaditem;
 	}
 
-	public String getImporteTotalItem() {
+	public Double getImporteTotalItem() {
 		return importeTotalItem;
 	}
 
-	public void setImporteTotalItem(String importeTotalItem) {
+	public void setImporteTotalItem(Double importeTotalItem) {
 		this.importeTotalItem = importeTotalItem;
 	}
 

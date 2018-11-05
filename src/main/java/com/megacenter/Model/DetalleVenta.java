@@ -28,6 +28,9 @@ public class DetalleVenta {
 	@Column(name = "importeTotal", nullable = true, precision = 11, scale = 2)
 	private String importeTotal;
 	
+	@Column(name = "stockActual", nullable = true, length = 11)
+	private String stockActual;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_venta")
 	private Venta venta;
@@ -66,6 +69,14 @@ public class DetalleVenta {
 
 	public void setImporteTotal(String importeTotal) {
 		this.importeTotal = importeTotal;
+	}
+
+	public String getStockActual() {
+		return stockActual;
+	}
+
+	public void setStockActual(String stockActual) {
+		this.stockActual = stockActual;
 	}
 
 	public Venta getVenta() {
