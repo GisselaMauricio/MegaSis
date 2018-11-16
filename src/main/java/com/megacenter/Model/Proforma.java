@@ -1,5 +1,6 @@
 package com.megacenter.Model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,13 +34,13 @@ public class Proforma {
     private String numeroProforma;
 
     @Column(name = "acuenta", nullable = false, precision = 11, scale = 2)
-    private double acuenta;
+    private BigDecimal acuenta;
 
     @Column(name = "saldo", nullable = false, precision = 11, scale = 2)
-    private double saldo;
+    private BigDecimal saldo;
 
     @Column(name = "total", nullable = false, precision = 11, scale = 2)
-    private double total;
+    private BigDecimal total;
 
     //@ManyToOne
     //@JoinColumn(name = "id_personal", nullable = false)
@@ -55,6 +56,7 @@ public class Proforma {
     @OneToMany(mappedBy = "proforma", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.REMOVE}, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<DetalleProforma> detalleProforma;
+
 
     public int getIdProforma() {
         return idProforma;
@@ -80,27 +82,27 @@ public class Proforma {
         this.numeroProforma = numeroProforma;
     }
 
-    public double getAcuenta() {
+    public BigDecimal getAcuenta() {
         return acuenta;
     }
 
-    public void setAcuenta(double acuenta) {
+    public void setAcuenta(BigDecimal acuenta) {
         this.acuenta = acuenta;
     }
 
-    public double getSaldo() {
+    public BigDecimal getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
+    public void setSaldo(BigDecimal saldo) {
         this.saldo = saldo;
     }
 
-    public double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
@@ -127,5 +129,4 @@ public class Proforma {
     public void setDetalleProforma(List<DetalleProforma> detalleProforma) {
         this.detalleProforma = detalleProforma;
     }
-
 }

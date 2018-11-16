@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "detalle_proforma")
 public class DetalleProforma {
@@ -23,10 +25,10 @@ public class DetalleProforma {
 	private int cantidaditem;
 
 	@Column(name = "precioitem", nullable = false, precision = 11, scale = 2)
-	private double precioitem;
+	private BigDecimal precioitem;
 
 	@Column(name = "importetotalitem", nullable = false, precision = 11, scale = 2)
-	private double importetotalitem;
+	private BigDecimal importetotalitem;
 
 	@ManyToOne
 	@JoinColumn(name = "id_producto", nullable = false)
@@ -36,6 +38,7 @@ public class DetalleProforma {
 	@ManyToOne
 	@JoinColumn(name = "id_proforma", nullable = false)
 	private Proforma proforma;
+
 
 	public int getIdDetalle() {
 		return idDetalle;
@@ -53,19 +56,19 @@ public class DetalleProforma {
 		this.cantidaditem = cantidaditem;
 	}
 
-	public double getPrecioitem() {
+	public BigDecimal getPrecioitem() {
 		return precioitem;
 	}
 
-	public void setPrecioitem(double precioitem) {
+	public void setPrecioitem(BigDecimal precioitem) {
 		this.precioitem = precioitem;
 	}
 
-	public double getImportetotalitem() {
+	public BigDecimal getImportetotalitem() {
 		return importetotalitem;
 	}
 
-	public void setImportetotalitem(double importetotalitem) {
+	public void setImportetotalitem(BigDecimal importetotalitem) {
 		this.importetotalitem = importetotalitem;
 	}
 
@@ -84,5 +87,4 @@ public class DetalleProforma {
 	public void setProforma(Proforma proforma) {
 		this.proforma = proforma;
 	}
-
 }

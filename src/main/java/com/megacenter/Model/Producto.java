@@ -51,6 +51,8 @@ public class Producto {
 	@JoinColumn(name = "id_organizacion", nullable = false)
 	private Organizacion organizacion;
 
+
+
 	public int getIdProducto() {
 		return idProducto;
 	}
