@@ -11,7 +11,8 @@ public class ConsultaListProforma {
 	private String estado_proforma;
 	private String numero_proforma;
 	// private double saldo;
-	// private double total;HOLAS
+	// private double total;
+    //POR NO QUIRES
 
 	public ConsultaListProforma() {
 		// TODO Auto-generated constructor stub
