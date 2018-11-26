@@ -1,9 +1,11 @@
 package com.megacenter.controller;
 
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 
 import com.megacenter.Model.Producto;
+import com.megacenter.Model.TipoComprobante;
 import com.megacenter.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,74 +18,105 @@ import com.megacenter.Model.Venta;
 import com.megacenter.service.IVentaService;
 
 
-
 @RestController
 @RequestMapping("/api/ventas")
 public class VentaController {
-	@Autowired
-	private IVentaService service;
-	@Autowired
-	private IProductoService productoService;
+    @Autowired
+    private IVentaService service;
+    @Autowired
+    private IProductoService productoService;
 
 
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Venta>> listar() {
+        List<Venta> ventas = new ArrayList<>();
+        try {
+            ventas = service.listar();
+        } catch (Exception e) {
+            return new ResponseEntity<List<Venta>>(ventas, HttpStatus.OK);
+        }
+        return new ResponseEntity<List<Venta>>(ventas, HttpStatus.OK);
 
-	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Venta>> listar(){
-		List<Venta> ventas=new ArrayList<>();
-		try {
-			ventas=service.listar();
-		} catch (Exception e) {
-			return new ResponseEntity<List<Venta>>(ventas, HttpStatus.OK);			
-		}		
-		return new ResponseEntity<List<Venta>>(ventas, HttpStatus.OK);
-			
-	}
+    }
 
-	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Venta> listarId(@PathVariable("id") Integer id) {
-		Venta venta = new Venta();
-		venta = service.listarId(id);
-		return new ResponseEntity<Venta>(venta, HttpStatus.OK);
-	}
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Venta> listarId(@PathVariable("id") Integer id) {
+        Venta venta = new Venta();
+        venta = service.listarId(id);
+        return new ResponseEntity<Venta>(venta, HttpStatus.OK);
+    }
 
-	@PostMapping(value ="/registrar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Venta> registrar(@RequestBody Venta venta) {
-		Venta v=new Venta();
-		try {
-			v.getDetalleVenta().forEach(detallev -> {
-				Producto producto = detallev.getProducto();
-				producto.setStock(producto.getStock() - Integer.parseInt(detallev.getCantidad()));
-				productoService.modificar(producto);
-			});
+    @PostMapping(value = "/registrar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Venta> registrar(@RequestBody Venta venta) {
+        try {
 
-		} catch (Exception e) {
-			return new ResponseEntity<Venta>(v, HttpStatus.INTERNAL_SERVER_ERROR);
-		}return new ResponseEntity<Venta>(v, HttpStatus.OK);
-	}
+            Venta registro = service.getUltimoNumeroComprobante(venta.getTipocomprobante().getIdTipocomprobante());
+            if (registro != null) {
+                int numero = Integer.parseInt(registro.getNumeroComprobante());
+                numero = numero + 1;
+                Formatter fmt = new Formatter();
+                fmt.format("%07d", numero);
+                venta.setNumeroComprobante(String.valueOf(fmt));
+                venta.setSerieComprobante(registro.getSerieComprobante());
+            } else {
+                venta.setNumeroComprobante("00000001");
+                venta.setSerieComprobante("001");
+            }
 
-	@PutMapping(value = "/actualizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Integer> actualizar(@RequestBody Venta venta) {
-		int resultado = 0;
-		try {
-			service.modificar(venta);
-			resultado = 1;
-		} catch (Exception e) {
-			resultado = 0;
-		}
-		return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
-	}
+            Venta v = service.registrar(venta);
+            v.getDetalleVenta().forEach(detallev -> {
+                Producto producto = detallev.getProducto();
+                producto.setStock(producto.getStock() - Integer.parseInt(detallev.getCantidad()));
+                productoService.modificar(producto);
+            });
 
-	@DeleteMapping(value = "/eliminar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Integer> eliminar(@PathVariable Integer id) {
-		int resultado = 0;
-		try {
-			service.eliminar(id);
-			resultado = 1;
-		} catch (Exception e) {
-			resultado = 0;
-		}
-		return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
-	}
+            return new ResponseEntity<Venta>(v, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<Venta>(new Venta(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping(value = "/actualizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Integer> actualizar(@RequestBody Venta venta) {
+        int resultado = 0;
+        try {
+            service.modificar(venta);
+            resultado = 1;
+        } catch (Exception e) {
+            resultado = 0;
+        }
+        return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
+    }
+
+    //@GetMapping(value = "/numero-comprobante", produces = MediaType.APPLICATION_JSON_VALUE)
+    //public ResponseEntity<Venta> NumeroComprobante( String numero) {
+    //try {
+    //	Venta v= service.numeroComprobante(numero);
+    //	int numer = 1;
+    //if (v != null && v.getNumeroComprobante() != null) {
+    //	numer = Integer.parseInt(v.getNumeroComprobante());
+    //	numer = numer + 1;
+    //	}
+
+    //	return new ResponseEntity<Venta>(v, HttpStatus.OK);
+    //}catch (Exception e) {
+    //return new ResponseEntity<Venta>((numer) null, HttpStatus.INTERNAL_SERVER_ERROR);
+    //}
+
+    //}
+
+    @DeleteMapping(value = "/eliminar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Integer> eliminar(@PathVariable Integer id) {
+        int resultado = 0;
+        try {
+            service.eliminar(id);
+            resultado = 1;
+        } catch (Exception e) {
+            resultado = 0;
+        }
+        return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
+    }
 
 
 }
