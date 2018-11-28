@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportListProforma" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b55c0428-4b3c-4d12-a0bc-fc7e8c62cbd1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MEGASIS"/>
+	<queryString language="SQL">
+		<![CDATA[select id_proforma, estado_proforma, numero_proforma from proforma]]>
+	</queryString>
+	<field name="id_proforma" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_proforma"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proforma"/>
+	</field>
+	<field name="estado_proforma" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="estado_proforma"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proforma"/>
+	</field>
+	<field name="numero_proforma" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="numero_proforma"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proforma"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="185" height="30" uuid="d8ebab51-7e8e-408a-a8be-9c22618dd24c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f7068636-b62c-4884-87e1-3c732e9f494b"/>
+				</reportElement>
+				<text><![CDATA[id_proforma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="0" width="185" height="30" uuid="ce8d1d18-e214-4fdb-821d-24e8f4183602">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a0e4cc8c-417e-40f9-853f-379e6b81b4f8"/>
+				</reportElement>
+				<text><![CDATA[estado_proforma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="185" height="30" uuid="e7881146-d6b3-41aa-a789-331502ab92b7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7df2e663-c703-4d0e-bd77-d46739627d9b"/>
+				</reportElement>
+				<text><![CDATA[numero_proforma]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="185" height="30" uuid="20f0b4f3-eb16-4184-b375-1c7ef7651726">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f7068636-b62c-4884-87e1-3c732e9f494b"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{id_proforma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="30" uuid="66ce5e15-1edc-433e-82a9-413447abdc96">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a0e4cc8c-417e-40f9-853f-379e6b81b4f8"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{estado_proforma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="185" height="30" uuid="22e169e7-6b6d-435b-89e6-62d92ec40ff4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7df2e663-c703-4d0e-bd77-d46739627d9b"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{numero_proforma}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

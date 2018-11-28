@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportListP" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb83e4f5-143e-4294-935e-ddf71fdc1e77">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MEGASIS"/>
+	<queryString language="SQL">
+		<![CDATA[select id_proforma,acuenta, estado_proforma, numero_proforma from proforma]]>
+	</queryString>
+	<field name="id_proforma" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_proforma"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proforma"/>
+	</field>
+	<field name="acuenta" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="acuenta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proforma"/>
+	</field>
+	<field name="estado_proforma" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="estado_proforma"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proforma"/>
+	</field>
+	<field name="numero_proforma" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="numero_proforma"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proforma"/>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="38b64de4-3cbf-4e09-9c33-1248206da5be"/>
+				<staticText>
+					<reportElement x="20" y="20" width="555" height="43" forecolor="#FFFFFF" uuid="ec691e4c-35f0-4250-952c-2ac5187dbe3e"/>
+					<textElement>
+						<font size="26" isBold="true"/>
+					</textElement>
+					<text><![CDATA[LISTA DE PROFORMAS EMITIDOS]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="6e37270c-a067-4343-bb1e-c99b860c8d7f"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0faab6f1-fde9-443b-9f47-ee3191eca152">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3216d38e-128d-4ef5-8c0b-a5a2e8aff850"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[id_proforma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="aa9c9832-7878-412f-8c32-86ce8d1435a2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f5209a51-5e2e-48c2-8458-30d8a3936b14"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[acuenta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b5f7bf43-c93b-41c2-ac74-6b1a6a7cbbbc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="15b5f51f-d71e-4257-af1c-8f2b47feb2ec"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[estado_proforma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="45b7fc2d-970f-4380-86ca-e5f9904248fd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="24597051-fd40-4541-b999-6cf995743bea"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[numero_proforma]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="ce787b08-495b-4b59-bc6b-6c514272c7c4"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="138" height="20" uuid="833ca657-1b35-4252-87e9-7e0e849f4396">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3216d38e-128d-4ef5-8c0b-a5a2e8aff850"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_proforma}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="138" y="0" width="138" height="20" uuid="040c32a6-7270-4658-bb7c-4363906d9ba1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f5209a51-5e2e-48c2-8458-30d8a3936b14"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{acuenta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="0" width="138" height="20" uuid="440cf881-ca70-4b25-8574-871261c2d9c0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="15b5f51f-d71e-4257-af1c-8f2b47feb2ec"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado_proforma}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="414" y="0" width="138" height="20" uuid="b36a395c-9af5-4372-b66c-8c53b7d089de">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="24597051-fd40-4541-b999-6cf995743bea"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_proforma}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="47f1d8f4-b668-4687-b6d4-2eb1178329dc"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="95d0f5b1-d30f-4e3b-8df0-a9355b2fdad2"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="24d21a9a-4a54-4351-b155-240f4132e1d1"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
