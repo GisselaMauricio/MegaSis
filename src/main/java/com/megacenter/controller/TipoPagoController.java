@@ -26,18 +26,19 @@ public class TipoPagoController {
 	@Autowired
 	private ITipoPagoService service;
 	@Autowired
-	private ITipoCambioService ser;
-	
-	@GetMapping( value ="/listar",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<TipoPago>> listar(){
-		List<TipoPago> tipoPagos=new ArrayList<>();
+	//private ITipoCambioService ser;
+
+	@GetMapping( produces = "application/json")
+	public ResponseEntity<List<TipoPago>> listar() {
+		List<TipoPago> lista = new ArrayList<>();
 		try {
-			tipoPagos=service.listar();
+
+			lista = service.listar();
+
 		} catch (Exception e) {
-			return new ResponseEntity<List<TipoPago>>(tipoPagos, HttpStatus.OK);			
-		}		
-		return new ResponseEntity<List<TipoPago>>(tipoPagos, HttpStatus.OK);
-			
+			return new ResponseEntity<List<TipoPago>>(lista, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<List<TipoPago>>(lista, HttpStatus.OK);
 	}
 	
 	@PostMapping(value ="/registrarPago", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -50,13 +51,12 @@ public class TipoPagoController {
 		}return new ResponseEntity<TipoPago>(pa, HttpStatus.OK);
 	}
 	
-	@PostMapping(value ="/registrarCmbio", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<TipoCambio> registrar(@RequestBody TipoCambio tipoCambio) {
-		TipoCambio det=new TipoCambio();
-		try {
-			det=ser.registrar(tipoCambio);			
-		} catch (Exception e) {
-			return new ResponseEntity<TipoCambio>(det, HttpStatus.INTERNAL_SERVER_ERROR);
-		}return new ResponseEntity<TipoCambio>(det, HttpStatus.OK);
-	}
+	//@PostMapping(value ="/registrarCmbio", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	//public ResponseEntity<TipoCambio> registrar(@RequestBody TipoCambio tipoCambio) {
+	//	TipoCambio det=new TipoCambio();
+	//	try {
+		//} catch (Exception e) {
+		//	return new ResponseEntity<TipoCambio>(det, HttpStatus.INTERNAL_SERVER_ERROR);
+		//}return new ResponseEntity<TipoCambio>(det, HttpStatus.OK);
+	//}
 }

@@ -35,16 +35,26 @@ public class Venta {
 	@Column(name = "montoTotal", nullable = false, precision = 11, scale = 2)
 	private Double montoTotal;
 	
-	@Column(name = "estadoVenta", nullable = false )
+	@Column(name = "estadoVenta", nullable = true )
 	private Double estadoVenta;
 
-	@OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    private TipoCambio tipoCambio;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-   private TipoPago tipoPago;
+	@Column(name = "serieComprobante", nullable = false,  length = 10)
+	private String serieComprobante;
+
+	@Column(name = "numeroComprobante", nullable = false, length = 10)
+	private String numeroComprobante;
+
+	@OneToOne
+	@JoinColumn(name = "id_tipocambio", nullable = false)
+	private TipoCambio tipocambio;
+
+	@OneToOne
+	@JoinColumn(name = "id_tipopago", nullable = false)
+	private TipoPago tipopago;
+
+	@OneToOne
+	@JoinColumn(name = "id_tipocomprobante", nullable = false)
+	private TipoComprobante tipocomprobante;
 	
 	@OneToOne
 	@JoinColumn(name = "id_cliente", nullable = false)
@@ -101,22 +111,6 @@ public class Venta {
 		this.estadoVenta = estadoVenta;
 	}
 
-	public TipoCambio getTipoCambio() {
-		return tipoCambio;
-	}
-
-	public void setTipoCambio(TipoCambio tipoCambio) {
-		this.tipoCambio = tipoCambio;
-	}
-
-	public TipoPago getTipoPago() {
-		return tipoPago;
-	}
-
-	public void setTipoPago(TipoPago tipoPago) {
-		this.tipoPago = tipoPago;
-	}
-
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -132,6 +126,45 @@ public class Venta {
 	public void setDetalleVenta(List<DetalleVenta> detalleVenta) {
 		this.detalleVenta = detalleVenta;
 	}
-	
-	
+
+
+	public String getSerieComprobante() {
+		return serieComprobante;
+	}
+
+	public void setSerieComprobante(String serieComprobante) {
+		this.serieComprobante = serieComprobante;
+	}
+
+	public String getNumeroComprobante() {
+		return numeroComprobante;
+	}
+
+	public void setNumeroComprobante(String numeroComprobante) {
+		this.numeroComprobante = numeroComprobante;
+	}
+
+	public TipoComprobante getTipocomprobante() {
+		return tipocomprobante;
+	}
+
+	public void setTipocomprobante(TipoComprobante tipocomprobante) {
+		this.tipocomprobante = tipocomprobante;
+	}
+
+    public TipoCambio getTipocambio() {
+        return tipocambio;
+    }
+
+    public void setTipocambio(TipoCambio tipocambio) {
+        this.tipocambio = tipocambio;
+    }
+
+    public TipoPago getTipopago() {
+        return tipopago;
+    }
+
+    public void setTipopago(TipoPago tipopago) {
+        this.tipopago = tipopago;
+    }
 }

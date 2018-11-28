@@ -3,6 +3,7 @@ package com.megacenter.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.megacenter.Model.DetalleCompra;
 import com.megacenter.Model.Producto;
 import com.megacenter.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,13 @@ public class CompraController {
         compras = service.listar();
         return new ResponseEntity<List<Compra>>(compras, HttpStatus.OK);
 
+    }
+
+    @GetMapping(value = "compra-detalle/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<DetalleCompra>> detlles( @PathVariable("id") Integer id) {
+        Compra compra = service.listarId(id);
+        List<DetalleCompra> detalleCompra = compra.getDetalleCompra();
+        return new ResponseEntity<List<DetalleCompra>>(detalleCompra, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

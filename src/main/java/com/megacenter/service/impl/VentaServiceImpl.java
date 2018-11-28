@@ -47,4 +47,9 @@ public class VentaServiceImpl implements IVentaService {
 		return dao.findAll();
 	}
 
+
+	@Override
+	public Venta getUltimoNumeroComprobante(int Id) {
+		return dao.getUltimoNumeroComprobante(Id);
+	}
 }
