@@ -3,6 +3,7 @@ package com.megacenter.controller;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
@@ -94,6 +95,7 @@ public class ProformaController {
                 proformas.setNumeroProforma(String.valueOf(fmt));
             }
             pro = service.registrar(proformas);
+//            generar(pro.getIdProforma());
 
         } catch (Exception e) {
             return new ResponseEntity<Proforma>(pro, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -108,5 +110,13 @@ public class ProformaController {
         data = service.generarReporte();
         return new ResponseEntity<byte[]>(data, HttpStatus.OK);
     }
+    
+    @GetMapping(value = "/generarReporteImprimir", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public ResponseEntity<byte[]> generarReporteImprimir() {
+        byte[] data = null;
+        data = service.generarReporteImprimir();
+        return new ResponseEntity<byte[]>(data, HttpStatus.OK);
+    }
+
 
 }
