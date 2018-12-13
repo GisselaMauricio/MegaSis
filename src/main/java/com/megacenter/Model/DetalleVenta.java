@@ -2,6 +2,8 @@ package com.megacenter.Model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,6 +35,7 @@ public class DetalleVenta {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_venta")
+	@JsonIgnore
 	private Venta venta;
 			
 	@ManyToOne(fetch = FetchType.LAZY)

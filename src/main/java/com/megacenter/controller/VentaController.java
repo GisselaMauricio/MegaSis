@@ -6,7 +6,11 @@ import java.util.List;
 
 import com.megacenter.Model.Producto;
 import com.megacenter.Model.TipoComprobante;
+import com.megacenter.dao.ITipoCambioDAO;
+import com.megacenter.representation.report.FacturaRepresentation;
 import com.megacenter.service.IProductoService;
+import com.megacenter.util.ModelToRepresentation;
+import com.megacenter.util.RepresentationToReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,10 +25,21 @@ import com.megacenter.service.IVentaService;
 @RestController
 @RequestMapping("/api/ventas")
 public class VentaController {
+
     @Autowired
     private IVentaService service;
+
     @Autowired
     private IProductoService productoService;
+
+    @Autowired
+    private ITipoCambioDAO tipoCambio;
+
+    @Autowired
+    private ModelToRepresentation modelToRepresentation;
+
+    @Autowired
+    private RepresentationToReport representationToReport;
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -49,13 +64,13 @@ public class VentaController {
     @PostMapping(value = "/registrar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Venta> registrar(@RequestBody Venta venta) {
         try {
-
+            venta.setTipocambio(tipoCambio.getOne(1));
             Venta registro = service.getUltimoNumeroComprobante(venta.getTipocomprobante().getIdTipocomprobante());
             if (registro != null) {
                 int numero = Integer.parseInt(registro.getNumeroComprobante());
                 numero = numero + 1;
                 Formatter fmt = new Formatter();
-                fmt.format("%07d", numero);
+                fmt.format("%08d", numero);
                 venta.setNumeroComprobante(String.valueOf(fmt));
                 venta.setSerieComprobante(registro.getSerieComprobante());
             } else {
@@ -89,23 +104,6 @@ public class VentaController {
         return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
     }
 
-    //@GetMapping(value = "/numero-comprobante", produces = MediaType.APPLICATION_JSON_VALUE)
-    //public ResponseEntity<Venta> NumeroComprobante( String numero) {
-    //try {
-    //	Venta v= service.numeroComprobante(numero);
-    //	int numer = 1;
-    //if (v != null && v.getNumeroComprobante() != null) {
-    //	numer = Integer.parseInt(v.getNumeroComprobante());
-    //	numer = numer + 1;
-    //	}
-
-    //	return new ResponseEntity<Venta>(v, HttpStatus.OK);
-    //}catch (Exception e) {
-    //return new ResponseEntity<Venta>((numer) null, HttpStatus.INTERNAL_SERVER_ERROR);
-    //}
-
-    //}
-
     @DeleteMapping(value = "/eliminar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> eliminar(@PathVariable Integer id) {
         int resultado = 0;
@@ -116,6 +114,14 @@ public class VentaController {
             resultado = 0;
         }
         return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/reporte-venta/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public ResponseEntity<byte[]> reporteVenta(@PathVariable Integer id) {
+        Venta model = service.listarId(id);
+        FacturaRepresentation representation = modelToRepresentation.toRepresentation(model);
+        byte[] reporte = representationToReport.toReport(representation);
+        return new ResponseEntity<byte[]>(reporte, HttpStatus.OK);
     }
 
 

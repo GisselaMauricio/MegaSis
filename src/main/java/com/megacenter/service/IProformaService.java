@@ -3,7 +3,6 @@ package com.megacenter.service;
 import java.util.List;
 
 import com.megacenter.Model.Proforma;
-import com.megacenter.representation.ConsultaDetalleProformaRepresentation;
 import com.megacenter.representation.ConsultaListProforma;
 
 public interface IProformaService {
@@ -24,7 +23,7 @@ public interface IProformaService {
 
 	byte[] generarReporte();
 	
-	List<ConsultaDetalleProformaRepresentation> listarDetalleProforma(Proforma proforma);
+	//List<ConsultaDetalleProformaRepresentation> listarDetalleProforma(Proforma proforma);
 	
 	byte[] generarReporteImprimir();
 	

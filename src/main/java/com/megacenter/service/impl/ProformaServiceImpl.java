@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.megacenter.Model.Proforma;
 import com.megacenter.dao.IProformaDAO;
-import com.megacenter.representation.ConsultaDetalleProformaRepresentation;
 import com.megacenter.representation.ConsultaListProforma;
 import com.megacenter.service.IProformaService;
 
@@ -89,7 +88,7 @@ public class ProformaServiceImpl implements IProformaService {
 		return data;
 	}
 
-	@Override
+/*	@Override
 	public List<ConsultaDetalleProformaRepresentation> listarDetalleProforma(Proforma proforma) {
 		List<ConsultaDetalleProformaRepresentation> consultadetalle = new ArrayList<>();
 		dao.listarDetalleProforma(proforma.getNumeroProforma()).forEach(x -> {
@@ -103,7 +102,7 @@ public class ProformaServiceImpl implements IProformaService {
 			consultadetalle.add(cd);
 		});
 		return consultadetalle;
-	}
+	}*/
 
 	public byte[] generarReporteImprimir() {
 		byte[] data = null;
@@ -118,10 +117,10 @@ public class ProformaServiceImpl implements IProformaService {
 		params.put("MontoTotal", p.getTotal());
 		System.out.println("Acuenta params: " + params);
 		try {
-			File file = new ClassPathResource("/reports/reportProforma.jasper").getFile();
+		/*	File file = new ClassPathResource("/reports/reportProforma.jasper").getFile();
 			JasperPrint print = JasperFillManager.fillReport(file.getPath(), params,
 					new JRBeanCollectionDataSource(this.listarDetalleProforma(getLastProforma())));
-			data = JasperExportManager.exportReportToPdf(print);
+			data = JasperExportManager.exportReportToPdf(print);*/
 
 		} catch (Exception e) {
 			e.printStackTrace();
